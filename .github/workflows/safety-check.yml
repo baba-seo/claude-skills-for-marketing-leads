@@ -1,0 +1,15 @@
+# Fails if the plugin gains anything SECURITY.md says it doesn't have:
+# connectors, hooks, agents, commands, other file types, network or write calls.
+name: Safety check
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python .github/scripts/safety_check.py

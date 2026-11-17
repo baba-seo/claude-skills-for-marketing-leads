@@ -1,10 +1,12 @@
-# Rebuilds organic-leads-diagnosis.zip whenever the skill changes, so the
-# upload-a-zip install (Claude's Free plan) never lags behind the plugin.
-name: Build skill zip
+# Rebuilds the two zips whenever the plugin changes, after the safety check:
+# - organic-leads-diagnosis.zip: the skill alone, for Claude's Free plan
+# - marketing-leads-plugin.zip: the whole plugin, for a company that reviews
+#   it once and uploads that copy (it then changes only when they upload again)
+name: Build zips
 on:
   push:
     branches: [main]
-    paths: ['plugins/marketing-leads/skills/organic-leads-diagnosis/**']
+    paths: ['plugins/marketing-leads/**']
   workflow_dispatch:
 permissions:
   contents: write
@@ -13,16 +15,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Build the zip with the skill folder at its root
+      - name: Safety check first
+        run: python .github/scripts/safety_check.py
+      - name: Build both zips
         run: |
-          rm -f organic-leads-diagnosis.zip
-          cd plugins/marketing-leads/skills
-          find . -name __pycache__ -prune -exec rm -rf {} +
-          zip -rq -X ../../../organic-leads-diagnosis.zip organic-leads-diagnosis
-      - name: Commit if it changed
+          find plugins -name __pycache__ -prune -exec rm -rf {} +
+          rm -f organic-leads-diagnosis.zip marketing-leads-plugin.zip
+          (cd plugins/marketing-leads/skills && zip -rq -X ../../../organic-leads-diagnosis.zip organic-leads-diagnosis)
+          (cd plugins && zip -rq -X ../marketing-leads-plugin.zip marketing-leads)
+      - name: Commit if they changed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
-          git add organic-leads-diagnosis.zip
-          git diff --cached --quiet || git commit -m "Rebuild organic-leads-diagnosis.zip"
+          git add organic-leads-diagnosis.zip marketing-leads-plugin.zip
+          git diff --cached --quiet || git commit -m "Rebuild zips"
           git push

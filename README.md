@@ -52,6 +52,10 @@ An uploaded zip doesn't update itself. Watch this repo on GitHub, or check back,
 
 These steps follow Anthropic's pages on [using plugins](https://claude.com/docs/plugins/overview) and [using skills](https://support.claude.com/en/articles/12512180-use-skills), checked in November 2026. If the menus have moved, those pages have the current ones.
 
+## For IT and plugin owners
+
+If your company reviews plugins before allowing them, [SECURITY.md](SECURITY.md) lists everything in this one and what it can't do: no connectors, no hooks or agents, no network, no file writes, checked automatically on every change. It also covers three ways to roll it out: add the marketplace and take updates, review once and upload a frozen copy ([marketing-leads-plugin.zip](https://github.com/baba-seo/claude-skills-for-marketing-leads/raw/main/marketing-leads-plugin.zip)), or skip installing and use the [free checklist page](https://www.baba-seo.com/website-leads-checklist) with its prompt.
+
 ## Use it
 
 Start a new chat and say what's going on, for example:
@@ -64,7 +68,7 @@ It never makes up a figure about your company. When your data can't answer somet
 
 ## Before you install
 
-A skill can run code, so read what you upload. This one has a single script, [`gsc_summary.py`](plugins/marketing-leads/skills/organic-leads-diagnosis/scripts/gsc_summary.py), which reads your Search Console export and prints a summary. It runs in Claude's own sandbox and sends nothing anywhere.
+A skill can run code, so read what you upload ([SECURITY.md](SECURITY.md) has the five-minute version). This one has a single script, [`gsc_summary.py`](plugins/marketing-leads/skills/organic-leads-diagnosis/scripts/gsc_summary.py), which reads your Search Console export and prints a summary. It runs in Claude's own sandbox and sends nothing anywhere.
 
 Remove names, emails and phone numbers from any CRM export before you upload it. The diagnosis doesn't need them.
 
