@@ -8,9 +8,19 @@ These are built for you to run on your own. They aren't the skills I use for cli
 
 | Skill | What it does | You need |
 |---|---|---|
-| [organic-leads-diagnosis](organic-leads-diagnosis/SKILL.md) | Finds why your B2B website gets organic visits (Google and AI assistants) but too few leads, and gives you a one-page diagnosis with the three fixes to start with | A Search Console export, your CRM, a phone and an hour with sales |
+| [organic-leads-diagnosis](organic-leads-diagnosis/SKILL.md) | Finds why your B2B website gets organic visits (Google and AI assistants) but too few leads, and gives you a one-page diagnosis with the three fixes to start with | A Search Console export (last 3 months against the previous period), your CRM, a phone and an hour with sales |
 
 **Download:** [organic-leads-diagnosis.zip](https://github.com/baba-seo/claude-skills-for-marketing-leads/raw/main/organic-leads-diagnosis.zip)
+
+## More than a checklist
+
+The ten checks are public on my site. What the skill adds is how I read what they turn up: eight rules from my own diagnosis work, each with the trigger, the decision, why, and when it doesn't apply. A few of them:
+
+- When organic leads move but Search Console visibility doesn't, it's a tracking question first, whichever way the number went. An unexplained rise is riskier than a drop, because a rise gets budgeted against.
+- When impressions grow and clicks don't, the fix is content only your company could write, not more of it.
+- A site change hits organic leads harder than paid, so "paid is fine" doesn't clear the website.
+
+Claude applies a rule only when its trigger is in your data, and says in the diagnosis which one it used, so you can follow the reasoning and disagree with it. All eight are in [judgment.md](organic-leads-diagnosis/references/judgment.md).
 
 ## Install it in Claude
 

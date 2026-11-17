@@ -20,11 +20,12 @@ Your job: find which of six causes is costing them leads, with evidence from the
 
 ## Step 1. The situation
 
-Ask, in two short rounds:
+Ask, in two or three short rounds:
 
 1. Company name, what they sell and to whom, and the markets (countries) they sell in.
 2. Every way people write the company and product names, including abbreviations and common misspellings. You need these for the brand split in step 3.
 3. Roughly how many organic visits and leads the website brings a month, and how a lead reaches sales today (form, demo request, phone, chat).
+4. Whether organic leads changed recently, up or down, and since when; and any recent change to the site, forms, tracking or CRM, with a date. Rules 1, 5 and 6 in the judgment file depend on these answers.
 
 ## Step 2. Ask for the data
 
@@ -32,10 +33,10 @@ Ask for what they can get in ten minutes. [references/data-exports.md](reference
 
 | File | Where it comes from | Used for |
 |---|---|---|
-| Search Console Performance export, last 3 months | Search Console, Performance, Export | Checks 1 to 3 and 5 |
+| Search Console Performance export, last 3 months compared with the previous period | Search Console, Performance, Compare, Export | Checks 1 to 3 and 5, rules 1, 2 and 4 |
 | CRM leads from the last quarter, with source | Their CRM | Checks 8 and 9 |
 
-If they can't export, work from what they can read off the screen and say the result is less precise. Don't stall the whole diagnosis on one missing file.
+Ask for the comparison: without it, the rules that compare two periods have nothing to read. If they can't export, work from what they can read off the screen and say the result is less precise. Don't stall the whole diagnosis on one missing file.
 
 ## Step 3. Run the numbers
 
@@ -51,20 +52,22 @@ Then do the part a script can't: go through the 50 top queries and mark each **b
 
 Search Console hides rare queries for privacy, so the query table adds up to less than the site's total clicks. The script shows the gap; mention it once so nobody is surprised.
 
+With a two-period export, check the period labels the script prints: the first is treated as the current period. Then read the numbers with [references/judgment.md](references/judgment.md), rules 1, 2 and 4: flat visibility while leads moved, impressions up with clicks flat, and brand searches losing clicks to an AI Overview.
+
 ## Step 4. The checks they do themselves
 
 The rest needs a phone, a test lead and a conversation with sales. Go through [references/checks.md](references/checks.md) stage by stage, Critical checks first. For each one, say what to do, what "done" looks like, and wait for what they found. Skip a check if they already know the answer.
 
 ## Step 5. Match findings to causes
 
-Use [references/causes.md](references/causes.md). For each cause, decide: **confirmed**, **ruled out** or **not checked**, with the evidence in one line. Rank the confirmed ones by how many leads they likely cost, using their numbers.
+Use [references/causes.md](references/causes.md), and read every finding through [references/judgment.md](references/judgment.md) before you name a cause: rule 5 (structural or acute) for every gap, rule 3 (find the asymmetry) whenever a blended number or an agreed explanation is doing the work, and rule 6 (damage is channel-shaped) when a site change lines up with fewer leads. For each cause, decide: **confirmed**, **ruled out** or **not checked**, with the evidence in one line. Rank the confirmed ones by how many leads they likely cost, using their numbers.
 
 ## Step 6. The diagnosis
 
 Create a one-page diagnosis as an artifact (or a document, if artifacts are off), in this order:
 
 1. Company name and date at the top, then progress: how many of the ten checks are done.
-2. **The three things to fix first**, in order, each with a first step, who should own it, and how they'll know it worked. Default order is by cost, cheapest first (see causes.md), unless their data says otherwise.
+2. **The three things to fix first**, in order, each with a first step, who should own it, and how they'll know it worked. Default order is by cost, cheapest first (see causes.md), unless their data says otherwise. Before a comparison page or any new page goes on the list, apply rules 7 and 8 in judgment.md.
 3. The six causes: confirmed, ruled out or not checked, with the evidence.
 4. The ten checks by stage: level, what was done, what was found, a checkbox. The "Not now" list under each stage.
 5. Open questions: what they still need to find out, and who can answer it.
@@ -76,9 +79,14 @@ Keep it plain and printable. Use real headings, a table only where it helps, and
 
 In chat, give them one sentence they can repeat to their CEO: what is costing leads, and what happens first. Then stop. Don't offer services.
 
+## Judgment
+
+The rules in [references/judgment.md](references/judgment.md) are what separates this diagnosis from a checklist. Apply a rule only when its trigger is in the data, and when you use one, say so in the diagnosis in plain words, with the evidence, so the reader can follow the reasoning and disagree with it.
+
 ## What not to do
 
 - Don't recommend a redesign or "more content" as a first fix. Both are expensive and both can miss the cause.
 - Don't recommend tools to buy. The checks need Search Console, the CRM, a phone and an hour with sales.
 - Don't judge the website on total visits.
+- Don't decide on a page from a keyword difficulty or authority score.
 - Don't blame the leads before the reply time has been checked.

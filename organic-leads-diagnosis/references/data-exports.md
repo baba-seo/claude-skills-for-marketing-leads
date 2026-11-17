@@ -6,13 +6,14 @@ Give the person only the steps for the file they are about to export.
 
 1. Open Search Console and pick the property for the website.
 2. Go to **Performance**, then **Search results**.
-3. Set the date range to the last 3 months.
+3. Click the date filter, open the **Compare** tab and choose the last 3 months compared with the previous period. Apply.
 4. Click **Export** at the top right, then **Download CSV** (or **Download Excel**).
 5. Upload the file here as it is. The CSV download is a zip with one file per table (queries, pages, countries and more); there's no need to unzip it.
 
 Notes to share only if they come up:
 - Each table in the export holds at most 1,000 rows, which is plenty for this diagnosis.
 - Search Console leaves out rare queries for privacy, so the queries table adds up to less than the site's total clicks.
+- If the Compare tab is confusing, a plain last-3-months export works too; the checks that compare two periods then wait.
 - If the site has several properties (for example one per country), export the one that brings the most clicks first.
 
 ## CRM leads, last quarter
