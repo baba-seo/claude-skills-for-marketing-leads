@@ -1,0 +1,28 @@
+# Rebuilds organic-leads-diagnosis.zip whenever the skill changes, so the
+# upload-a-zip install (Claude's Free plan) never lags behind the plugin.
+name: Build skill zip
+on:
+  push:
+    branches: [main]
+    paths: ['plugins/marketing-leads/skills/organic-leads-diagnosis/**']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  zip:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build the zip with the skill folder at its root
+        run: |
+          rm -f organic-leads-diagnosis.zip
+          cd plugins/marketing-leads/skills
+          find . -name __pycache__ -prune -exec rm -rf {} +
+          zip -rq -X ../../../organic-leads-diagnosis.zip organic-leads-diagnosis
+      - name: Commit if it changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git add organic-leads-diagnosis.zip
+          git diff --cached --quiet || git commit -m "Rebuild organic-leads-diagnosis.zip"
+          git push

@@ -17,6 +17,20 @@ Your job: find which of six causes is costing them leads, with evidence from the
 - Organic only: Google and AI assistants. Keep paid campaigns out, unless they explain a pattern in the data.
 - Use their currency and their words for things (their product names, their stages in the CRM).
 - They are busy. Move on as soon as a check has an answer; don't make them read theory.
+- **When you're unsure what something in their data means, ask them.** Which period is current, what a column or a CRM source stands for, which property to use: one short question beats a wrong reading.
+
+## Say what you don't know
+
+This diagnosis is only worth something if it is honest about its limits. When the data can't answer something, say so plainly, in one sentence, and say what would answer it:
+
+> "I can't tell from this data whether the drop is tracking or rankings. The source on the last 20 leads in the CRM would settle it."
+
+- No softening, no filling the gap with benchmarks, industry averages or what is "typical". An average from other companies is not a finding about theirs.
+- **"Can't tell" and "not checked" are valid results.** A cause stays unconfirmed until their own data confirms it, however likely it sounds.
+- Small numbers get said out loud: a handful of leads or conversions shows a direction, not a conclusion.
+- If they can only give you part of the data, the diagnosis covers that part and says which part it doesn't cover.
+- If too little is confirmed for three fixes, give fewer and say why. Never pad the list.
+- If a later answer shows you read something wrong earlier, say so in those words ("I read this wrong earlier: ..."), then correct the diagnosis.
 
 ## Step 1. The situation
 
@@ -46,13 +60,13 @@ When the Search Console export arrives, run [scripts/gsc_summary.py](scripts/gsc
 python scripts/gsc_summary.py <export.zip or folder> --brand "acme" --brand "acme cloud" --markets "Netherlands,Germany,Belgium"
 ```
 
-It reports brand and non-brand clicks, the share of clicks from their markets, the top 50 queries and the top 10 landing pages. It works on the zip Search Console gives, a folder of its CSVs, or an Excel file. If the script fails on their file, read the file yourself with pandas and do the same sums; say which way you did it.
+It reports brand and non-brand clicks, the share of clicks from their markets, the top 50 queries and the top 10 landing pages. It works on the zip Search Console gives, a folder of its CSVs, or an Excel file. If the script fails on their file, or a column in their export isn't one you recognise, ask them what it is, then read the file yourself with pandas and do the same sums; say which way you did it.
 
 Then do the part a script can't: go through the 50 top queries and mark each **buyer**, **maybe** or **not a buyer** (students, job seekers, definitions, people looking for a login page), with a few words on why. Show the list and let them correct it before you count. Their judgment of their own market beats yours.
 
 Search Console hides rare queries for privacy, so the query table adds up to less than the site's total clicks. The script shows the gap; mention it once so nobody is surprised.
 
-With a two-period export, check the period labels the script prints: the first is treated as the current period. Then read the numbers with [references/judgment.md](references/judgment.md), rules 1, 2 and 4: flat visibility while leads moved, impressions up with clicks flat, and brand searches losing clicks to an AI Overview.
+With a two-period export, the script prints the period labels and treats the first one as the current period. Show them the labels and ask which period is the recent one before you read any comparison; if they say the order is the other way round, read the columns the other way round, and say so. Never guess the order. Then read the numbers with [references/judgment.md](references/judgment.md), rules 1, 2 and 4: flat visibility while leads moved, impressions up with clicks flat, and brand searches losing clicks to an AI Overview.
 
 ## Step 4. The checks they do themselves
 
@@ -60,24 +74,24 @@ The rest needs a phone, a test lead and a conversation with sales. Go through [r
 
 ## Step 5. Match findings to causes
 
-Use [references/causes.md](references/causes.md), and read every finding through [references/judgment.md](references/judgment.md) before you name a cause: rule 5 (structural or acute) for every gap, rule 3 (find the asymmetry) whenever a blended number or an agreed explanation is doing the work, and rule 6 (damage is channel-shaped) when a site change lines up with fewer leads. For each cause, decide: **confirmed**, **ruled out** or **not checked**, with the evidence in one line. Rank the confirmed ones by how many leads they likely cost, using their numbers.
+Use [references/causes.md](references/causes.md), and read every finding through [references/judgment.md](references/judgment.md) before you name a cause: rule 5 (structural or acute) for every gap, rule 3 (find the asymmetry) whenever a blended number or an agreed explanation is doing the work, and rule 6 (damage is channel-shaped) when a site change lines up with fewer leads. For each cause, decide: **confirmed**, **ruled out**, **can't tell from this data** or **not checked**, with the evidence (or what's missing) in one line. Rank the confirmed ones by how many leads they likely cost, using their numbers.
 
 ## Step 6. The diagnosis
 
 Create a one-page diagnosis as an artifact (or a document, if artifacts are off), in this order:
 
 1. Company name and date at the top, then progress: how many of the ten checks are done.
-2. **The three things to fix first**, in order, each with a first step, who should own it, and how they'll know it worked. Default order is by cost, cheapest first (see causes.md), unless their data says otherwise. Before a comparison page or any new page goes on the list, apply rules 7 and 8 in judgment.md.
-3. The six causes: confirmed, ruled out or not checked, with the evidence.
-4. The ten checks by stage: level, what was done, what was found, a checkbox. The "Not now" list under each stage.
-5. Open questions: what they still need to find out, and who can answer it.
+2. **The things to fix first** (up to three, fewer if fewer are confirmed), in order, each with a first step, who should own it, and how they'll know it worked. Default order is by cost, cheapest first (see causes.md), unless their data says otherwise. Before a comparison page or any new page goes on the list, apply rules 7 and 8 in judgment.md.
+3. **What I couldn't tell**: each question the data couldn't answer, in one plain sentence, with what would answer it and who has it. This section stays near the top, never at the bottom.
+4. The six causes: confirmed, ruled out, can't tell or not checked, with the evidence.
+5. The ten checks by stage: level, what was done, what was found, a checkbox. The "Not now" list under each stage.
 6. One line at the bottom: "Based on the free organic leads checklist by Baba SEO: https://www.baba-seo.com/website-leads-checklist"
 
 Keep it plain and printable. Use real headings, a table only where it helps, and make sure it works with a keyboard and a screen reader.
 
 ## Step 7. Close
 
-In chat, give them one sentence they can repeat to their CEO: what is costing leads, and what happens first. Then stop. Don't offer services.
+In chat, give them one sentence they can repeat to their CEO: what is costing leads, and what happens first. If the honest answer is that the data can't tell yet, that is the sentence, with what will tell. Then stop. Don't offer services.
 
 ## Judgment
 

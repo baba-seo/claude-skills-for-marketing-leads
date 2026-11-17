@@ -1,0 +1,12 @@
+{
+  "name": "marketing-leads",
+  "description": "Claude skills for marketing leads by Baba SEO. First skill: organic leads diagnosis, which finds why a B2B website gets organic visits but too few leads, using your own Search Console and CRM data.",
+  "author": {
+    "name": "Baba SEO",
+    "url": "https://www.baba-seo.com"
+  },
+  "homepage": "https://github.com/baba-seo/claude-skills-for-marketing-leads",
+  "repository": "https://github.com/baba-seo/claude-skills-for-marketing-leads",
+  "license": "CC-BY-4.0",
+  "keywords": ["seo", "b2b", "leads", "search console", "marketing"]
+}

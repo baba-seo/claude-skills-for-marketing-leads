@@ -1,0 +1,15 @@
+{
+  "name": "baba-seo",
+  "description": "Free Claude skills for CMOs and marketing leads, by Baba SEO",
+  "owner": {
+    "name": "Baba SEO",
+    "url": "https://www.baba-seo.com"
+  },
+  "plugins": [
+    {
+      "name": "marketing-leads",
+      "source": "./plugins/marketing-leads",
+      "description": "Find why your B2B website gets organic visits but too few leads, with your own Search Console and CRM data."
+    }
+  ]
+}

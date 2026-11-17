@@ -149,6 +149,8 @@ def main():
 
     print("# Search Console summary\n")
     print("Periods: " + (" vs ".join(p[0] for p in periods) if compare else "one period (no comparison)") + "\n")
+    if compare:
+        print(f"Ask the person before reading on: is \"{periods[0][0]}\" the most recent period? This summary assumes it is.\n")
 
     if "dates" in t:
         d = t["dates"]
