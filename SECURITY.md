@@ -51,6 +51,6 @@ On Team and Enterprise plans, an owner decides which plugin sources members see 
 
 ## Report a problem
 
-Open an [issue](https://github.com/baba-seo/claude-skills-for-marketing-leads/issues). For anything you'd rather not post in public, email letsgrow@baba-seo.com.
+Open an [issue](https://github.com/baba-seo/claude-skills-for-marketing-leads/issues). For anything you'd rather not post in public, send me a direct message on [LinkedIn](https://www.linkedin.com/in/baba-seo/).
 
 Built and maintained by [Baba SEO](https://www.baba-seo.com). Licence: [CC BY 4.0](LICENSE).

@@ -121,7 +121,7 @@ Create a one-page diagnosis as an HTML artifact with inline SVG charts (or a doc
 5. **The evidence**: one chart per finding that matters, under the cause it proves, each titled with its takeaway and naming the judgment rule used, if any.
 6. **The detail**: the ten checks by stage (level, what was done, what was found, a checkbox), progress (how many of ten are done), the "Not now" lists, and one line at the bottom: "Based on the free organic leads checklist by Baba SEO: https://www.baba-seo.com/website-leads-checklist"
 
-   Under it, one more line: "Want more on any point, or something isn't clear? Ask here in the chat. To suggest a change to the skill itself: https://github.com/baba-seo/claude-skills-for-marketing-leads/issues or letsgrow@baba-seo.com"
+   Under it, one more line: "Want more on any point, or something isn't clear? Ask here in the chat. To suggest a change to the skill itself, open an issue at https://github.com/baba-seo/claude-skills-for-marketing-leads/issues or message Baba SEO on LinkedIn: https://www.linkedin.com/in/baba-seo/"
 
 7. **What comes next**: one short paragraph. This shows what holds back the pages they have. Growing beyond them takes a revenue-first SEO strategy: which buyers to reach, with which pages, in which order, and someone to own it. No sales pitch, no names.
 
