@@ -73,6 +73,8 @@ When the asker is the reader, there's one report and no briefing. Refer to the r
 
 Draw a chart only from figures in their data: the script's chart data (run it with `--chart-data`), their CRM export, or numbers they gave you. Copy figures from the chart data; don't retype them. Never chart a benchmark, an average from other companies, or a number you estimated yourself.
 
+**Adapt to what you see.** The table below is a menu, not a template. Draw a chart only where their data has something to show, skip the ones that would be empty or flat for no reason, and add a chart that isn't listed when a finding needs one, following the rules under "Every chart". Two diagnoses should rarely look the same.
+
 **Which chart for which finding**
 
 | Finding | Chart |
