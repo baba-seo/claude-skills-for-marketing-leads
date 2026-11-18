@@ -69,19 +69,31 @@ Draw a chart only from figures in their data: the script's chart data (run it wi
 
 ## Format
 
-Build the diagnosis as one HTML artifact (or a document, if artifacts are off) with the charts as inline SVG. No external scripts, fonts or images, so it opens anywhere, prints cleanly and works with a keyboard and a screen reader. Real headings in order, enough contrast, text never inside images.
+Build the diagnosis as one HTML artifact (or a document, if artifacts are off) with the charts as inline SVG. No external scripts, fonts or images, so it opens anywhere, prints cleanly and works with a keyboard and a screen reader. Real headings in order, text never inside images.
 
-A minimal pattern for a split bar. A label goes inside its segment only when it fits; otherwise it goes on a line under the bar, right-aligned if it would run off the edge. Text at 13px, the chart capped at its natural width so it never blows up on a wide screen.
+**Light and dark.** People open it in either. Never rely on the viewer's default background: set the page's own background and every colour through the variables below, with the dark override, and colour SVG shapes and text through classes, never `fill="#..."` attributes. These values pass WCAG 2.2 AA in both modes: text 4.5:1 or more, bars 3:1 or more against the page.
+
+```css
+:root{color-scheme:light dark;--bg:#ffffff;--fg:#111111;--muted:#444b55;--line:#d5d9e0;
+  --accent:#1c35b8;--on-accent:#ffffff;--bar:#858d99;--soft:#f4f6fa}
+@media (prefers-color-scheme:dark){:root{--bg:#16181d;--fg:#e8eaee;--muted:#b4bac4;--line:#3a3f48;
+  --accent:#8aa2ff;--on-accent:#0b1020;--bar:#60676f;--soft:#1f232b}}
+html,body{background:var(--bg);color:var(--fg)} a{color:var(--accent)}
+svg text{fill:var(--fg);font-size:13px} svg text.on{fill:var(--on-accent)}
+svg rect.acc{fill:var(--accent)} svg rect.base{fill:var(--bar)}
+```
+
+A minimal split bar. A label goes inside its segment only when it fits; otherwise on a line under the bar, right-aligned if it would run off the edge. The chart is capped at its natural width so it never blows up on a wide screen.
 
 ```html
 <figure>
   <figcaption><strong>82% of organic clicks come from people who already searched your name</strong></figcaption>
   <svg role="img" aria-label="Organic clicks, last 3 months: brand 740 (82%), non-brand 160 (18%)"
-       viewBox="0 0 600 74" width="100%" style="max-width:600px; font-size:13px">
-    <rect x="0" y="4" width="493" height="36" fill="#c9ced6"/>
-    <rect x="493" y="4" width="107" height="36" fill="#1c35b8"/>
-    <text x="8" y="27" fill="#111">Brand 740 (82%)</text>
-    <text x="600" y="62" fill="#111" text-anchor="end">Non-brand 160 (18%)</text>
+       viewBox="0 0 600 74" width="100%" style="max-width:600px">
+    <rect class="base" x="0" y="4" width="493" height="36"/>
+    <rect class="acc" x="493" y="4" width="107" height="36"/>
+    <text x="8" y="27">Brand 740 (82%)</text>
+    <text x="600" y="62" text-anchor="end">Non-brand 160 (18%)</text>
   </svg>
   <p>Last 3 months. Brand 740 clicks, non-brand 160 clicks. Fact, from your Search Console export.</p>
 </figure>
