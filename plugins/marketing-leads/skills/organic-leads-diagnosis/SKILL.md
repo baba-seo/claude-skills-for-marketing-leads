@@ -11,6 +11,7 @@ Your job: find which of six causes is costing them leads, with evidence from the
 
 ## How to work
 
+- **Answer first, then show it.** Every message and the diagnosis itself start with the conclusion in one bold line, then a visual, then the detail. The reader is busy; they should get the point without reading further. [references/visuals.md](references/visuals.md) has the rules for the layout and every chart.
 - Ask short questions, at most three at a time, and wait for the answers. Offer choices where you can.
 - Plain language. If you use an SEO or analytics term, explain it in a few words the first time.
 - **Never invent a figure or a fact about their company.** If they don't know something, mark it as an open question. Every number in the diagnosis is labelled **fact** (from their data), **estimate** (their best guess) or **assumption** (yours, stated as such).
@@ -57,12 +58,14 @@ Ask for the comparison: without it, the rules that compare two periods have noth
 When the Search Console export arrives, run [scripts/gsc_summary.py](scripts/gsc_summary.py) on it with their brand terms:
 
 ```
-python scripts/gsc_summary.py <export.zip or folder> --brand "acme" --brand "acme cloud" --markets "Netherlands,Germany,Belgium"
+python scripts/gsc_summary.py <export.zip or folder> --brand "acme" --brand "acme cloud" --markets "Netherlands,Germany,Belgium" --chart-data
 ```
 
-It reports brand and non-brand clicks, the share of clicks from their markets, the top 50 queries and the top 10 landing pages. It works on the zip Search Console gives, a folder of its CSVs, or an Excel file. If the script fails on their file, or a column in their export isn't one you recognise, ask them what it is, then read the file yourself with pandas and do the same sums; say which way you did it.
+It reports brand and non-brand clicks, the share of clicks from their markets, the top 50 queries and the top 10 landing pages, and with `--chart-data` the same figures as JSON for the charts. It works on the zip Search Console gives, a folder of its CSVs, or an Excel file. If the script fails on their file, or a column in their export isn't one you recognise, ask them what it is, then read the file yourself with pandas and do the same sums; say which way you did it.
 
 Then do the part a script can't: go through the 50 top queries and mark each **buyer**, **maybe** or **not a buyer** (students, job seekers, definitions, people looking for a login page), with a few words on why. Show the list and let them correct it before you count. Their judgment of their own market beats yours.
+
+Report what you found as visuals.md describes for chat: a bold one-line verdict per finding, one small chart, two lines at most. Not the script's tables.
 
 Search Console hides rare queries for privacy, so the query table adds up to less than the site's total clicks. The script shows the gap; mention it once so nobody is surprised.
 
@@ -78,16 +81,16 @@ Use [references/causes.md](references/causes.md), and read every finding through
 
 ## Step 6. The diagnosis
 
-Create a one-page diagnosis as an artifact (or a document, if artifacts are off), in this order:
+Create a one-page diagnosis as an HTML artifact with inline SVG charts (or a document, if artifacts are off), following [references/visuals.md](references/visuals.md). Top to bottom, so a reader who stops early still has the answer:
 
-1. Company name and date at the top, then progress: how many of the ten checks are done.
-2. **The things to fix first** (up to three, fewer if fewer are confirmed), in order, each with a first step, who should own it, and how they'll know it worked. Default order is by cost, cheapest first (see causes.md), unless their data says otherwise. Before a comparison page or any new page goes on the list, apply rules 7 and 8 in judgment.md.
-3. **What I couldn't tell**: each question the data couldn't answer, in one plain sentence, with what would answer it and who has it. This section stays near the top, never at the bottom.
-4. The six causes: confirmed, ruled out, can't tell or not checked, with the evidence.
-5. The ten checks by stage: level, what was done, what was found, a checkbox. The "Not now" list under each stage.
-6. One line at the bottom: "Based on the free organic leads checklist by Baba SEO: https://www.baba-seo.com/website-leads-checklist"
+1. **The answer**: one sentence they can repeat to their CEO, with the company name and date above it.
+2. **The six causes at a glance**: a strip of six tiles, each marked confirmed, ruled out, can't tell from this data, or not checked, with an icon and the word.
+3. **What to fix first**: up to three cards (fewer if fewer are confirmed), in order, each with a first step, an owner and how they'll know it worked. Default order is by cost, cheapest first (see causes.md), unless their data says otherwise. Before a comparison page or any new page goes on the list, apply rules 7 and 8 in judgment.md.
+4. **What I couldn't tell**: each question the data couldn't answer, in one plain sentence, with what would answer it and who has it.
+5. **The evidence**: one chart per finding that matters, under the cause it proves, each titled with its takeaway and naming the judgment rule used, if any.
+6. **The detail**: the ten checks by stage (level, what was done, what was found, a checkbox), progress (how many of ten are done), the "Not now" lists, and one line at the bottom: "Based on the free organic leads checklist by Baba SEO: https://www.baba-seo.com/website-leads-checklist"
 
-Keep it plain and printable. Use real headings, a table only where it helps, and make sure it works with a keyboard and a screen reader.
+It has to print cleanly and work with a keyboard and a screen reader.
 
 ## Step 7. Close
 

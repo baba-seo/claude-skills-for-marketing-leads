@@ -20,7 +20,7 @@ The zips at the root of the repo are built from the same folder by a GitHub work
 
 - **No connectors.** It can't reach any app, account or service.
 - **No hooks, agents or commands.** Nothing runs on anyone's computer, and nothing runs on its own.
-- **No network.** The script imports only `argparse`, `io`, `re`, `sys`, `zipfile`, `pathlib` and `pandas`.
+- **No network.** The script imports only `argparse`, `io`, `json`, `re`, `sys`, `zipfile`, `pathlib` and `pandas`.
 - **No writes.** The script doesn't create, change or delete files. It reads the uploaded file and prints a summary.
 - **Markdown, JSON and Python only.** No binaries, no other file types.
 

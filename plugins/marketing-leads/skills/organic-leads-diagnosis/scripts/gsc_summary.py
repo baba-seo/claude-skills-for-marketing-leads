@@ -9,7 +9,10 @@ group, the share of clicks from the markets the company sells in, the top 50
 queries and the top 10 landing pages.
 
 Usage:
-  python gsc_summary.py EXPORT --brand "acme" [--brand "acme cloud"] [--markets "Netherlands,Germany"]
+  python gsc_summary.py EXPORT --brand "acme" [--brand "acme cloud"] [--markets "Netherlands,Germany"] [--chart-data]
+
+With --chart-data it also prints the same figures as one JSON block, so charts
+are drawn from the export itself and nobody retypes a number.
 
 Brand terms match anywhere in a query, ignoring case. Market names must be
 written as Search Console writes them in the Countries table (in English,
@@ -18,6 +21,7 @@ for example "Netherlands", "United Kingdom").
 
 import argparse
 import io
+import json
 import re
 import sys
 import zipfile
@@ -114,6 +118,21 @@ def wpos(df, pos, imp):
     return f"{(df[pos] * df[imp]).sum() / df[imp].sum():.1f}"
 
 
+def group_rows(groups, periods):
+    """Figures per group and period, for --chart-data."""
+    rows = []
+    for name, g in groups:
+        row = {"group": name}
+        for lab, c, i, p in periods:
+            cl = float(g[c].sum())
+            im = float(g[i].sum()) if i else None
+            row[lab] = {"clicks": cl, "impressions": im,
+                        "ctr": round(cl / im * 100, 2) if im else None,
+                        "position": None if wpos(g, p, i) == "n/a" else float(wpos(g, p, i))}
+        rows.append(row)
+    return rows
+
+
 def group_table(title, groups, periods):
     """groups: [(name, dataframe)]; prints clicks, impressions, CTR, position per period."""
     print(f"## {title}\n")
@@ -135,7 +154,9 @@ def main():
     ap.add_argument("export")
     ap.add_argument("--brand", action="append", default=[], help="a brand term; repeat for each spelling")
     ap.add_argument("--markets", default="", help="comma-separated country names as Search Console writes them")
+    ap.add_argument("--chart-data", action="store_true", help="also print the figures as JSON for charts")
     args = ap.parse_args()
+    chart = {}
 
     t = load_tables(args.export)
     if "queries" not in t:
@@ -146,6 +167,8 @@ def main():
     periods = periods_of(q)
     cur_label, cur_c, cur_i, cur_p = periods[0]
     compare = len(periods) > 1
+    chart["periods"] = [p[0] for p in periods]
+    chart["current_period_assumed"] = periods[0][0]
 
     print("# Search Console summary\n")
     print("Periods: " + (" vs ".join(p[0] for p in periods) if compare else "one period (no comparison)") + "\n")
@@ -160,14 +183,16 @@ def main():
         for (lab, c, _, _), (_, dc, _, _) in zip(periods, dper):
             shown, total = q[c].sum(), d[dc].sum()
             print(f"| {lab} | {shown:,.0f} | {total:,.0f} | {total - shown:,.0f} ({pct(total - shown, total)}) |")
+            chart.setdefault("site_clicks", {})[lab] = {"shown_in_queries": float(shown), "site_total": float(total)}
         print()
 
     if args.brand:
         terms = [b.lower() for b in args.brand]
         lower = q[qcol].astype(str).str.lower()
         is_brand = lower.apply(lambda s: any(b in s for b in terms))
-        group_table("Brand and non-brand (check 2; rules 1 and 2)",
-                    [(f"Brand ({', '.join(args.brand)})", q[is_brand]), ("Non-brand", q[~is_brand])], periods)
+        bn = [("Brand", q[is_brand]), ("Non-brand", q[~is_brand])]
+        group_table(f"Brand ({', '.join(args.brand)}) and non-brand (check 2; rules 1 and 2)", bn, periods)
+        chart["brand_split"] = group_rows(bn, periods)
         b = q[is_brand].copy()
         bl = lower[is_brand]
         assigned = pd.Series("bare name or other", index=b.index)
@@ -176,6 +201,7 @@ def main():
         groups = [(n, b[assigned == n]) for n in [g[0] for g in BRAND_GROUPS] + ["bare name or other"] if (assigned == n).any()]
         if groups:
             group_table("Brand searches by group (rule 4)", groups, periods)
+            chart["brand_groups"] = group_rows(groups, periods)
     else:
         is_brand = pd.Series(False, index=q.index)
         print("No --brand terms given: brand split skipped.\n")
@@ -192,6 +218,10 @@ def main():
         missing = [m for m in markets if m not in found]
         print(f"## Markets (check 3), {cur_label}\n")
         print(f"Clicks from markets they sell in: {m_clicks:,.0f} of {c_total:,.0f} ({pct(m_clicks, c_total)})")
+        chart["markets"] = {"period": cur_label, "in_markets": float(m_clicks), "total": float(c_total),
+                            "top_countries": [{"country": str(r[ccol]), "clicks": float(r[cc]),
+                                               "in_markets": str(r[ccol]).lower() in markets}
+                                              for _, r in c.sort_values(cc, ascending=False).head(10).iterrows()]}
         if missing:
             print(f"No clicks recorded from: {', '.join(missing)} (if that is unexpected, check the spelling against the Countries table)")
         print("\n| Country | Clicks | In their markets |")
@@ -205,6 +235,8 @@ def main():
     print(f"| # | Query | Clicks{extra} | Brand |")
     print("|---|---|---|" + ("---|" if compare else "") + "---|")
     top_q = q.assign(_brand=is_brand).sort_values(cur_c, ascending=False).head(50)
+    chart["top_queries"] = [{"query": str(r[qcol]), "clicks": float(r[cur_c]), "brand": bool(r["_brand"])}
+                            for _, r in top_q.iterrows()]
     for i, (_, r) in enumerate(top_q.iterrows(), 1):
         prev = f" | {r[periods[1][1]]:,.0f}" if compare else ""
         print(f"| {i} | {r[qcol]} | {r[cur_c]:,.0f}{prev} | {'yes' if r['_brand'] else ''} |")
@@ -218,7 +250,11 @@ def main():
         head = "| # | Page |" + "".join(f" {lab}: clicks | CTR | position |" for lab, *_ in pper)
         print(head)
         print("|---|---|" + "---|---|---|" * len(pper))
+        chart["top_pages"] = []
         for i, (_, r) in enumerate(p.sort_values(pper[0][1], ascending=False).head(10).iterrows(), 1):
+            chart["top_pages"].append({"page": str(r[pcol]), **{lab: {"clicks": float(r[c]),
+                                       "impressions": float(r[im]) if im else None,
+                                       "position": float(r[po]) if po else None} for lab, c, im, po in pper}})
             row = f"| {i} | {r[pcol]} |"
             for _, c, im, po in pper:
                 row += f" {r[c]:,.0f} | {ctr(r[c], r[im]) if im else 'n/a'} | {f'{r[po]:.1f}' if po else 'n/a'} |"
@@ -226,6 +262,12 @@ def main():
         print()
 
     print("Search Console exports show at most 1,000 rows per table.")
+
+    if args.chart_data:
+        print("\n## Chart data (JSON)\n")
+        print("```json")
+        print(json.dumps(chart, indent=1))
+        print("```")
 
 
 if __name__ == "__main__":

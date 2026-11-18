@@ -24,7 +24,7 @@ FORBIDDEN_PATHS = ["hooks", "agents", "commands", ".mcp.json", "mods", "bin"]
 FORBIDDEN_MANIFEST_KEYS = {"mcpServers", "hooks", "agents", "commands", "lspServers", "mods"}
 
 # Standard library modules that read data only, plus pandas to read the export.
-ALLOWED_IMPORTS = {"argparse", "io", "re", "sys", "zipfile", "pathlib", "pandas"}
+ALLOWED_IMPORTS = {"argparse", "io", "json", "re", "sys", "zipfile", "pathlib", "pandas"}
 
 # Calls and attributes that write, delete, execute or connect.
 FORBIDDEN_CALLS = {
