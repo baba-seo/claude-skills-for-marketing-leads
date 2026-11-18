@@ -62,6 +62,34 @@ def periods_of(df):
     return out
 
 
+def period_end(label):
+    """The last date written in a period label, if it has one."""
+    found = re.findall(r"(\d{4}-\d{2}-\d{2}|\d{1,2} [A-Za-z]{3,9} \d{4}|[A-Za-z]{3,9} \d{1,2},? \d{4})", label)
+    for f in reversed(found):
+        d = pd.to_datetime(f, errors="coerce")
+        if pd.notna(d):
+            return d
+    return None
+
+
+def order_periods(periods):
+    """Put the recent period first. Returns (periods, how it was decided)."""
+    if len(periods) < 2:
+        return periods, "one period"
+    labels = [p[0].lower() for p in periods]
+    recent_words, older_words = ("last", "current", "this", "recent"), ("previous", "prior", "earlier", "before")
+    rec = [i for i, l in enumerate(labels) if any(w in l.split() for w in recent_words) and not any(w in l for w in older_words)]
+    old = [i for i, l in enumerate(labels) if any(w in l for w in older_words)]
+    if len(rec) == 1 and old:
+        i = rec[0]
+        return [periods[i]] + [p for j, p in enumerate(periods) if j != i], "from the words in the labels"
+    ends = [period_end(p[0]) for p in periods]
+    if all(e is not None for e in ends) and len(set(ends)) == len(ends):
+        order = sorted(range(len(periods)), key=lambda j: ends[j], reverse=True)
+        return [periods[j] for j in order], "from the dates in the labels"
+    return periods, "UNCLEAR: the labels don't say which period is recent; the first column is assumed to be"
+
+
 def classify(df):
     """Name a table by its first column header."""
     if df is None or df.empty or not metric_columns(df, "clicks"):
@@ -197,20 +225,21 @@ def main():
 
     q = t["queries"]
     qcol = q.columns[0]
-    periods = periods_of(q)
+    periods, period_basis = order_periods(periods_of(q))
     cur_label, cur_c, cur_i, cur_p = periods[0]
     compare = len(periods) > 1
     chart["periods"] = [p[0] for p in periods]
-    chart["current_period_assumed"] = periods[0][0]
+    chart["current_period"] = periods[0][0]
 
     print("# Search Console summary\n")
     print("Periods: " + (" vs ".join(p[0] for p in periods) if compare else "one period (no comparison)") + "\n")
     if compare:
-        print(f"Ask the person before reading on: is \"{periods[0][0]}\" the most recent period? This summary assumes it is.\n")
+        print(f"Recent period: \"{periods[0][0]}\" ({period_basis}).\n")
+    chart["current_period_basis"] = period_basis
 
     if "dates" in t:
         d = t["dates"]
-        dper = periods_of(d)
+        dper = order_periods(periods_of(d))[0]
         print("| Period | Clicks in the queries table | Clicks for the whole site | Not shown by Search Console |")
         print("|---|---|---|---|")
         for (lab, c, _, _), (_, dc, _, _) in zip(periods, dper):
@@ -262,7 +291,7 @@ def main():
     if "countries" in t and args.markets:
         c = t["countries"]
         ccol = c.columns[0]
-        cc = periods_of(c)[0][1]
+        cc = order_periods(periods_of(c))[0][0][1]
         markets = [m.strip().lower() for m in args.markets.split(",") if m.strip()]
         in_mkt = c[ccol].astype(str).str.lower().isin(markets)
         c_total = c[cc].sum()
@@ -298,7 +327,7 @@ def main():
     if "pages" in t:
         p = t["pages"]
         pcol = p.columns[0]
-        pper = periods_of(p)
+        pper = order_periods(periods_of(p))[0]
         print(f"## Top 10 landing pages, {cur_label} (checks 5 and 6; rules 2 and 6)\n")
         head = "| # | Page |" + "".join(f" {lab}: clicks | CTR | position |" for lab, *_ in pper)
         print(head)

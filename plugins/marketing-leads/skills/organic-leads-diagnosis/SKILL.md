@@ -14,13 +14,15 @@ Your job: find which of six causes is costing them leads, with evidence from the
 ## How to work
 
 - **Answer first, then show it.** The diagnosis starts with the conclusion in one line, then the visuals, then the detail. While you work, messages lead with what you found so far, clearly labelled as a first read, never dressed up as the diagnosis. The reader is busy; they should get the point without reading further. [references/visuals.md](references/visuals.md) has the rules for the layout and every chart.
-- Ask short questions, at most three at a time, and wait for the answers. Offer choices where you can.
+- **Four exchanges before the report, not ten.** Confirm what you read about them, ask for all the data at once, share a first read with one bundle of quick checks, then build the report. Anything they skip becomes "not checked" in the report; it never holds the report up.
+- **Show you understand them, then ask them to confirm.** Read what you can before you ask: their website, and anything they said. Propose, don't interview: "From your site, you sell X to Y in these countries. Right?"
+- **Questions as choices.** Where your interface offers tappable choices, use them. Otherwise give lettered options they can answer with one letter, and always leave room for their own answer. At most three questions at a time.
 - Plain language. If you use an SEO or analytics term, explain it in a few words the first time.
 - **Never invent a figure or a fact about their company.** If they don't know something, mark it as an open question. Every number in the diagnosis is labelled **fact** (from their data), **estimate** (their best guess) or **assumption** (yours, stated as such).
 - Organic only: Google and AI assistants. Keep paid campaigns out, unless they explain a pattern in the data.
 - Use their currency and their words for things (their product names, their stages in the CRM).
 - They are busy. Move on as soon as a check has an answer; don't make them read theory.
-- **When you're unsure what something in their data means, ask them.** Which period is current, what a column or a CRM source stands for, which property to use: one short question beats a wrong reading.
+- **Work out what you can; ask only what you can't.** The script decides which period is the recent one from the export's own labels or dates, and you state that in the report. Ask only when the data gives no way to tell: what a CRM source stands for, which of two properties to use. One short question beats a wrong reading.
 
 ## Say what you don't know
 
@@ -35,19 +37,28 @@ This diagnosis is only worth something if it is honest about its limits. When th
 - If too little is confirmed for three fixes, give fewer and say why. Never pad the list.
 - If a later answer shows you read something wrong earlier, say so in those words ("I read this wrong earlier: ..."), then correct the diagnosis.
 
-## Step 1. The situation
+## Step 1. Who they are, who's asking, and for whom
 
-Ask, in two or three short rounds:
+**Before the first question**, if you can open web pages, read their website: the homepage, the product or solution pages, pricing, about, and a customer story if there is one. Work out what they sell, to whom (industry, company size, the role that buys), in which countries and languages, how the brand is written, and who they compare themselves with. If you can't open pages, or don't know the site yet, ask for the website address first.
 
-1. Company name, what they sell and to whom, and the markets (countries) they sell in.
-2. Every way people write the company and product names, including abbreviations and common misspellings. You need these for the brand split in step 3.
-3. Roughly how many organic visits and leads the website brings a month, and how a lead reaches sales today (form, demo request, phone, chat).
-4. Whether organic leads changed recently, up or down, and since when; and any recent change to the site, forms, tracking or CRM, with a date. Rules 1, 5 and 6 in the judgment file depend on these answers.
-5. Who the diagnosis is for: themselves, their CEO, their CFO, the board. The order of the diagnosis follows the reader (visuals.md, Order by reader).
+Then send **one message** that shows what you understood and asks them to confirm, with choices:
 
-## Step 2. Ask for the data
+> From your site: you sell fleet software to transport companies with 10 to 200 vehicles, in the Netherlands, Germany and Belgium, and people write you as "Acme Fleet" or "AcmeFleet". Is that right, or what would you change?
+>
+> Two quick ones:
+> 1. What's your role? A) CMO or head of marketing B) Founder or CEO C) Something else
+> 2. Who will read the report? A) Me B) My CEO C) My CFO D) The board
 
-Ask for what they can get in ten minutes. [references/data-exports.md](references/data-exports.md) has the click-by-click steps; give them only the steps for what they're about to export.
+In the same message, ask what's going on in their own words, if they haven't said it yet: roughly how many organic visits and leads a month, whether that changed and since when, and any change to the site, forms, tracking or CRM, with a date. Rules 1, 5 and 6 in the judgment file depend on those dates.
+
+**The asker and the reader can be different people.** Keep both in mind for the rest of the work:
+- The report is written for the reader, in the order visuals.md gives for that reader.
+- When the reader isn't the asker, the asker also gets a short briefing for themselves (visuals.md, The asker's briefing).
+- Pitch your questions and the chat to the asker: a CMO gets marketing terms, a founder gets plain business words.
+
+## Step 2. Ask for the data, all at once
+
+Ask for everything in one message, with the steps for each, so they can do it in one sitting. Ask for what they can get in ten minutes. [references/data-exports.md](references/data-exports.md) has the click-by-click steps; give them only the steps for what they're about to export.
 
 | File | Where it comes from | Used for |
 |---|---|---|
@@ -55,7 +66,7 @@ Ask for what they can get in ten minutes. [references/data-exports.md](reference
 | Optional, worth asking for: a second export, the last 16 months without comparison (or at least 12) | Search Console, Performance, Export | The trend: when things moved, and what else happened then |
 | CRM leads from the last quarter, with source | Their CRM | Checks 8 and 9 |
 
-If a Search Console connector is available in their Claude, use it for the same data instead of asking for exports, and say which you used. Ask for the comparison: without it, the rules that compare two periods have nothing to read. If they can't export, work from what they can read off the screen and say the result is less precise. Don't stall the whole diagnosis on one missing file.
+If a Search Console connector is available in their Claude, use it for the same data instead of asking for exports, and say which you used. Make the 16 months an easy yes: one line on why (it shows when things moved). Ask for the comparison: without it, the rules that compare two periods have nothing to read. If they can't export, work from what they can read off the screen and say the result is less precise. Don't stall the whole diagnosis on one missing file.
 
 ## Step 3. Run the numbers
 
@@ -67,7 +78,7 @@ python scripts/gsc_summary.py <export.zip or folder> --brand "acme" --brand "acm
 
 It reports brand and non-brand clicks, the share of clicks from their markets, the top 50 queries and the top 10 landing pages, and with `--chart-data` the same figures as JSON for the charts. It works on the zip Search Console gives, a folder of its CSVs, or an Excel file. If the script fails on their file, or a column in their export isn't one you recognise, ask them what it is, then read the file yourself with pandas and do the same sums; say which way you did it.
 
-Then do the part a script can't: go through the 50 top queries and mark each **buyer**, **maybe** or **not a buyer** (students, job seekers, definitions, people looking for a login page), with a few words on why. Show the list and let them correct it before you count. Their judgment of their own market beats yours.
+Then do the part a script can't: go through the 50 top queries and mark each **buyer**, **maybe** or **not a buyer** (students, job seekers, definitions, people looking for a login page), with a few words on why, using what you learned about their buyers in step 1. Don't make them review all 50: put the few you're least sure of in the next message as quick choices, and count once they've answered. Their judgment of their own market beats yours.
 
 Report what you found as visuals.md describes for chat: labelled as a first read, findings as "so far", one compact table, and what happens next. Not the script's full tables, and nothing that looks like the finished diagnosis.
 
@@ -82,11 +93,17 @@ Timing is a lead, not proof. A dip that lines up with a core update and with Chr
 
 Search Console hides rare queries for privacy, so the query table adds up to less than the site's total clicks. The script shows the gap; mention it once so nobody is surprised.
 
-With a two-period export, the script prints the period labels and treats the first one as the current period. Show them the labels and ask which period is the recent one before you read any comparison; if they say the order is the other way round, read the columns the other way round, and say so. Never guess the order. Then read the numbers with [references/judgment.md](references/judgment.md), rules 1, 2 and 4: flat visibility while leads moved, impressions up with clicks flat, and brand searches losing clicks to an AI Overview.
+With a two-period export, the script works out which period is the recent one from the labels or the dates in them, and prints how it decided. Don't ask about it; write it in the report's detail ("'Last 3 months' read as the recent period, from the export's labels"). Only if the script says it couldn't tell, ask, as one choice. Then read the numbers with [references/judgment.md](references/judgment.md), rules 1, 2 and 4: flat visibility while leads moved, impressions up with clicks flat, and brand searches losing clicks to an AI Overview.
 
-## Step 4. The checks they do themselves
+## Step 4. One message: the first read and the quick checks
 
-The rest needs a phone, a test lead and a conversation with sales. Go through [references/checks.md](references/checks.md) stage by stage, Critical checks first. For each one, say what to do, what "done" looks like, and wait for what they found. Skip a check if they already know the answer.
+Send the first read (step 3) and everything you still need from them in **one message**, so they can answer it in one go:
+
+- the few searches you're unsure are buyers, as choices
+- for each week the trend flags, "did anything change on your side around [date]?", as choices
+- the checks only they can do, from [references/checks.md](references/checks.md): Critical first, each with what to do and what "done" looks like, skipping any they've already answered
+
+Say plainly that they can skip any of it and get the report now: a skipped check becomes "not checked", and they can come back and add it. If they skip the lot, build the report from what you have and say how much that leaves open.
 
 ## Step 5. Match findings to causes
 
@@ -107,6 +124,8 @@ Create a one-page diagnosis as an HTML artifact with inline SVG charts (or a doc
 7. **What comes next**: one short paragraph. This shows what holds back the pages they have. Growing beyond them takes a revenue-first SEO strategy: which buyers to reach, with which pages, in which order, and someone to own it. No sales pitch, no names.
 
 It has to print cleanly, work in light and dark mode, and work with a keyboard and a screen reader.
+
+If the reader isn't the asker, also make the asker's briefing as a separate artifact or document (visuals.md, The asker's briefing). The report is the one they forward; the briefing stays with them.
 
 ## Step 7. Close
 

@@ -54,6 +54,21 @@ Ask in step 1 who the diagnosis is for. The facts and numbers are the same in ev
 - A range beats a single number when any input is an estimate. Work the range from their own low and high estimates, not from benchmarks.
 - The same chart can serve two readers with a different title: "Organic demo requests halved since the new navigation" for the CMO, "About €100k to €210k a year of pipeline at stake" for the CFO.
 
+## The asker's briefing
+
+When the person asking isn't the one who'll read the report (a CMO preparing something for the CFO, a head of marketing for the board), they get two things, as two separate artifacts or documents:
+
+1. **The report**, written for the reader. This is the one they forward.
+2. **A briefing**, for the asker only, never meant to be forwarded. One screen:
+   - **The point in one line**, as they'd say it out loud.
+   - **How to open**: the first two sentences to say when they present it.
+   - **The questions the reader is likely to ask**, three at most, each with the answer from the data and its label (fact, estimate, assumption). For a CFO: what it's worth, what it costs, how sure we are. For a CEO: what we decide, who owns it, what's the risk.
+   - **What's still unknown, and how to say it** without losing the room: what's missing, and when they'll know.
+   - **The decision they need** from the reader, in one line.
+   - **The marketing detail they'll want for themselves** but the reader won't: which pages, which searches, which rule, in a few lines.
+
+When the asker is the reader, there's one report and no briefing.
+
 ## Charts
 
 Draw a chart only from figures in their data: the script's chart data (run it with `--chart-data`), their CRM export, or numbers they gave you. Copy figures from the chart data; don't retype them. Never chart a benchmark, an average from other companies, or a number you estimated yourself.
