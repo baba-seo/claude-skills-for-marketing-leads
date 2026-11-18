@@ -2,15 +2,28 @@
 
 The reader is a CMO or head of marketing with five minutes. Write everything, in chat and in the diagnosis, as an inverted pyramid: the answer first, then what to do, then what's unknown, then the evidence, then the detail. Someone who reads only the top of the page must know the answer and the first move. Someone who reads to the end gets the proof.
 
-## In chat, after each step
+## In chat, while you work
 
-Lead with a one-line verdict in bold, then one small visual, then at most two lines of explanation. Never a paragraph of numbers.
+The chat is work in progress; the diagnosis is the report. Never let a message mid-way look or sound like the finished diagnosis.
 
-> **Most of your organic clicks come from people who already know you.**
-> [bar: brand 82% / non-brand 18%]
-> Non-brand clicks are what organic brings on its own. At 18%, the site is mostly found by people who already searched your name.
+- **Label every update as a first read.** Start with a short line such as "First read of your data, not the diagnosis yet", so nobody forwards it as the answer.
+- **Say "so far" until the checks are done.** Findings in chat are provisional: what the data suggests, and what would confirm or overturn it. No causes named as confirmed, no fixes, no answer sentence before step 5.
+- **Small visuals only.** At most one compact table (three or four rows: the figure now, before, and the change) per message. No titled charts in chat: charts with takeaway titles belong in the diagnosis.
+- **One headline, not two.** Don't repeat the same point as a bold line and again as a title.
+- **End with what happens next**, so they know the work isn't finished.
 
-A short table counts as a visual when a chart would be overkill (three rows or fewer).
+> First read of your data, not the diagnosis yet.
+> So far: **search visibility looks unchanged, and only demo requests fell.**
+>
+> | | Now | Before |
+> |---|---|---|
+> | Organic clicks | 4,440 | 4,597 |
+> | Organic demo requests | 19 | 38 |
+> | Organic downloads | 121 | 115 |
+>
+> If that holds, the drop happens after the click, on the site. I'll test it with the checks on your phone before calling it.
+
+The last message, once the diagnosis exists, can give the answer sentence and point to the diagnosis.
 
 ## The diagnosis, top to bottom
 

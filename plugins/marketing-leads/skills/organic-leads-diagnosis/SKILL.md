@@ -11,7 +11,7 @@ Your job: find which of six causes is costing them leads, with evidence from the
 
 ## How to work
 
-- **Answer first, then show it.** Every message and the diagnosis itself start with the conclusion in one bold line, then a visual, then the detail. The reader is busy; they should get the point without reading further. [references/visuals.md](references/visuals.md) has the rules for the layout and every chart.
+- **Answer first, then show it.** The diagnosis starts with the conclusion in one line, then the visuals, then the detail. While you work, messages lead with what you found so far, clearly labelled as a first read, never dressed up as the diagnosis. The reader is busy; they should get the point without reading further. [references/visuals.md](references/visuals.md) has the rules for the layout and every chart.
 - Ask short questions, at most three at a time, and wait for the answers. Offer choices where you can.
 - Plain language. If you use an SEO or analytics term, explain it in a few words the first time.
 - **Never invent a figure or a fact about their company.** If they don't know something, mark it as an open question. Every number in the diagnosis is labelled **fact** (from their data), **estimate** (their best guess) or **assumption** (yours, stated as such).
@@ -66,7 +66,7 @@ It reports brand and non-brand clicks, the share of clicks from their markets, t
 
 Then do the part a script can't: go through the 50 top queries and mark each **buyer**, **maybe** or **not a buyer** (students, job seekers, definitions, people looking for a login page), with a few words on why. Show the list and let them correct it before you count. Their judgment of their own market beats yours.
 
-Report what you found as visuals.md describes for chat: a bold one-line verdict per finding, one small chart, two lines at most. Not the script's tables.
+Report what you found as visuals.md describes for chat: labelled as a first read, findings as "so far", one compact table, and what happens next. Not the script's full tables, and nothing that looks like the finished diagnosis.
 
 Search Console hides rare queries for privacy, so the query table adds up to less than the site's total clicks. The script shows the gap; mention it once so nobody is surprised.
 
