@@ -67,7 +67,7 @@ When the person asking isn't the one who'll read the report (a CMO preparing som
    - **The decision they need** from the reader, in one line.
    - **The marketing detail they'll want for themselves** but the reader won't: which pages, which searches, which rule, in a few lines.
 
-When the asker is the reader, there's one report and no briefing.
+When the asker is the reader, there's one report and no briefing. Refer to the reader by role ("the CFO"), not by he or she, unless the asker has told you.
 
 ## Charts
 
