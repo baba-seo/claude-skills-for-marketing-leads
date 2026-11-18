@@ -38,7 +38,7 @@ KINDS = {
 
 BRAND_GROUPS = [
     ("login", r"log ?in|sign ?in|account|portal|app\b"),
-    ("pricing", r"pric|cost|tarie|kosten|preis|prix|plan\b|plans\b"),
+    ("pricing", r"pric|prijs|prijzen|cost|tarie|kosten|preis|prix|plan\b|plans\b"),
     ("reviews", r"review|rating|ervaring|bewertung|avis|trustpilot|g2\b|capterra"),
     ("comparison", r"\bvs\b|versus|alternativ|compar|vergelijk|vergleich"),
     ("support", r"support|help|contact|phone|telefoon|klantenservice|kundenservice"),

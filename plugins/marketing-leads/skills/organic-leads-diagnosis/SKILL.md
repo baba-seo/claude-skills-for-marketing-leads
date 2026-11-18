@@ -41,6 +41,7 @@ Ask, in two or three short rounds:
 2. Every way people write the company and product names, including abbreviations and common misspellings. You need these for the brand split in step 3.
 3. Roughly how many organic visits and leads the website brings a month, and how a lead reaches sales today (form, demo request, phone, chat).
 4. Whether organic leads changed recently, up or down, and since when; and any recent change to the site, forms, tracking or CRM, with a date. Rules 1, 5 and 6 in the judgment file depend on these answers.
+5. Who the diagnosis is for: themselves, their CEO, their CFO, the board. The order of the diagnosis follows the reader (visuals.md, Order by reader).
 
 ## Step 2. Ask for the data
 
@@ -81,7 +82,7 @@ Use [references/causes.md](references/causes.md), and read every finding through
 
 ## Step 6. The diagnosis
 
-Create a one-page diagnosis as an HTML artifact with inline SVG charts (or a document, if artifacts are off), following [references/visuals.md](references/visuals.md). Top to bottom, so a reader who stops early still has the answer:
+Create a one-page diagnosis as an HTML artifact with inline SVG charts (or a document, if artifacts are off), following [references/visuals.md](references/visuals.md). The order below is for a CMO or head of marketing. For a CFO or CEO, keep the same sections and numbers and follow the order in visuals.md, Order by reader. If they want a version for a second reader, make it from the same findings. Top to bottom, so a reader who stops early still has the answer:
 
 1. **The answer**: one sentence they can repeat to their CEO, with the company name and date above it.
 2. **The six causes at a glance**: a strip of six tiles, each marked confirmed, ruled out, can't tell from this data, or not checked, with an icon and the word.

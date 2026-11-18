@@ -25,6 +25,20 @@ A short table counts as a visual when a chart would be overkill (three rows or f
 5. **The evidence**: the charts below, one per finding that matters, most important first. Each chart sits under the cause it proves.
 6. **The detail**: the ten checks table, the "Not now" lists, the source line.
 
+## Order by reader
+
+Ask in step 1 who the diagnosis is for. The facts and numbers are the same in every version; only the order, the emphasis and the words change. If they want it for a second reader, make a second version from the same findings.
+
+| Reader | Opens with | Then | Evidence leads with | Words |
+|---|---|---|---|---|
+| **CMO or head of marketing** | The answer: what is costing leads, and what happens first | The six causes strip, the fixes with owners and first steps, what I couldn't tell | Leads, the path to sales, the search data | Marketing terms, each explained once |
+| **CFO** | What the gap is worth a year, as a range, each input labelled fact, estimate or assumption | What each fix costs (time, people, money where known) and how soon it should show, cheapest first; then how sure the numbers are | Leads, deals and revenue; search data only as support | Money, ranges and confidence. No SEO terms |
+| **CEO or founder** | The answer, and the one decision needed from them | The fixes with owners, what it's worth, the main risk | Leads and deals | Plain business words |
+
+- **Never stretch the money for a CFO.** If deal value or the share of leads that become deals is missing, the CFO version opens by saying the value can't be put in money yet, and what would let you.
+- A range beats a single number when any input is an estimate. Work the range from their own low and high estimates, not from benchmarks.
+- The same chart can serve two readers with a different title: "Organic demo requests halved since the new navigation" for the CMO, "About €100k to €210k a year of pipeline at stake" for the CFO.
+
 ## Charts
 
 Draw a chart only from figures in their data: the script's chart data (run it with `--chart-data`), their CRM export, or numbers they gave you. Copy figures from the chart data; don't retype them. Never chart a benchmark, an average from other companies, or a number you estimated yourself.
@@ -46,6 +60,7 @@ Draw a chart only from figures in their data: the script's chart data (run it wi
 
 - The title is the takeaway, as a sentence: "Most clicks come from people who already know you", not "Brand vs non-brand clicks".
 - Horizontal bars, values written on the bars, axis starting at zero. No pies, no 3D, no gauges, no dual axes.
+- Never put different units on one scale (clicks next to a position or a percentage). When each row compares its own before and after, scale each row on its own and say so under the chart.
 - One accent colour for what matters, grey for the rest. Never colour as the only way to tell things apart: label the segments.
 - Period labels on everything that compares periods.
 - Say how many it rests on when it's small ("based on 6 leads").
