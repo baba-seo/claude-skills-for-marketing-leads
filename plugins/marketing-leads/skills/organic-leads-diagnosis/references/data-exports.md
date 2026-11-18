@@ -16,6 +16,13 @@ Notes to share only if they come up:
 - If the Compare tab is confusing, a plain last-3-months export works too; the checks that compare two periods then wait.
 - If the site has several properties (for example one per country), export the one that brings the most clicks first.
 
+## Optional: the trend, last 16 months
+
+1. In the same Performance report, set the date range to **Last 16 months** (or 12 if that's what they have), without Compare.
+2. Export, Download CSV, and upload it as it is.
+
+Search Console keeps 16 months of data. The script reads the daily totals for the trend. Tell them in one line why it's worth it: it shows when things moved, so changes on their side and Google's updates can be checked against the dates.
+
 ## CRM leads, last quarter
 
 Ask for a list of the leads created in the last full quarter, exported from the CRM's contacts, leads or deals view, with these columns where they exist:

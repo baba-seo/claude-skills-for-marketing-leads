@@ -13,13 +13,14 @@ When a B2B website gets organic visits and no pipeline, the cause is almost alwa
 
 ## Order of fixes
 
-Default order, cheapest first, because the cheap fixes work on leads they already get:
+The fix list stays on the pages and content they already have. Default order, quickest effect first:
 
-1. Slow replies (5): a routing rule and an alert. This week.
-2. Hidden path to sales (4): a few days of page and form fixes.
-3. Leads the report can't see (6): ten questions to new leads, then a monthly habit.
-4. No page for buyers close to a decision (3): a few weeks per page.
-5. Wrong visitors, or only people who know them (1 and 2): months of new pages, so it comes last.
+1. Hidden path to sales (4): the way from the pages that already get organic visits to the form. Days.
+2. Existing pages buyers don't choose (rule 2 in judgment.md): titles and openings rewritten with what only this company can say, on pages that already rank. Days to weeks.
+3. Decision pages that exist but don't answer (3): a pricing page that says "on request", a product page with no comparison. Update what's there before building anything new. Weeks.
+4. Missing decision pages (3), and visitors who will never buy or only know the brand (1 and 2): new pages, months. Name them as the direction, not as this month's fixes.
+
+**Outside organic search.** Slow replies (5) and leads the report can't see (6) cost leads too, but they belong to sales and to whoever runs the CRM. Put them in the "Outside organic search" box with who should get them, never on the fix list.
 
 Change the order only when their data gives a reason, and say what the reason is. Example: if replies are already under 5 minutes, cause 5 is ruled out and drops off the list.
 

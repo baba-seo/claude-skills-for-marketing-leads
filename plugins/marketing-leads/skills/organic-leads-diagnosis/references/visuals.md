@@ -33,10 +33,12 @@ The last message, once the diagnosis exists, can give the answer sentence and po
    - ✕ Ruled out
    - ? Can't tell from this data
    - ○ Not checked
-3. **What to fix first**: up to three cards, numbered. Each card: the fix in a bold line, then the first step, the owner, and "you'll know it worked when…".
+   Under it, one plain line on scope: a diagnosis of the coverage they have today, from N months of their data; a direction, not a forecast or a growth strategy.
+3. **What to fix first**: up to three cards, numbered, all on existing pages and content. Each card: the fix in a bold line, then the first step, the owner, and "you'll know it worked when…". Then an **Outside organic search** box: findings for sales or the CRM owner, one line each with who gets it.
 4. **What I couldn't tell**: one line each, with what would answer it and who has it.
 5. **The evidence**: the charts below, one per finding that matters, most important first. Each chart sits under the cause it proves.
 6. **The detail**: the ten checks table, the "Not now" lists, the source line.
+7. **What comes next**: one short paragraph: growing beyond the pages they have takes a revenue-first SEO strategy and someone to own it.
 
 ## Order by reader
 
@@ -67,6 +69,7 @@ Draw a chart only from figures in their data: the script's chart data (run it wi
 | Brand searches losing clicks (rule 4) | Paired bars per brand group: CTR now and before |
 | Leads by source and how many became deals (checks 8 and 9) | Horizontal bars per source, deals shown inside each bar |
 | Reply time (check 7) | One number, large, with the 5-minute target written next to it and labelled as a target |
+| Trend over 12 to 16 months | Monthly clicks as a line, with a second small chart under it for leads if they have them (never one chart with two axes). Their changes, Google updates and Search Console data errors marked as labelled vertical lines; partial months marked |
 | What closing the gaps is worth (check 10) | The sum written out: leads × share that becomes a deal × deal value = total, each input labelled fact, estimate or assumption |
 
 **Every chart**

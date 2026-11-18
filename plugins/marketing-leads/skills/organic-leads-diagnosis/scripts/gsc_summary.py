@@ -103,6 +103,39 @@ def load_tables(path):
     return tables
 
 
+# Search Console's own reporting errors that distort comparisons. Google lists
+# them on its Data anomalies page; add new ones here with their source.
+ANOMALIES = [
+    ("2025-05-13", "2026-04-27",
+     "Search Console over-reported impressions (clicks were not affected). "
+     "Compare clicks across this period, not impressions or CTR. "
+     "Source: Google's Search Console Data anomalies page."),
+]
+
+
+def trend(d):
+    """Monthly totals and the biggest weekly moves from a daily dates table."""
+    dcol = d.columns[0]
+    dates = pd.to_datetime(d[dcol], errors="coerce")
+    if dates.notna().sum() < 60:
+        return None
+    _, c, i, _ = periods_of(d)[0]
+    df = pd.DataFrame({"date": dates, "clicks": d[c], "impressions": d[i] if i else 0}).dropna(subset=["date"])
+    df = df.sort_values("date")
+    m = df.groupby(df["date"].dt.to_period("M")).agg(clicks=("clicks", "sum"), impressions=("impressions", "sum"), days=("date", "nunique"))
+    months = [{"month": str(k), "clicks": float(r.clicks), "impressions": float(r.impressions),
+               "partial": int(r.days) < k.days_in_month} for k, r in m.iterrows()]
+    w = df.set_index("date")["clicks"].resample("W-MON", label="left", closed="left").sum()
+    full = w.iloc[1:-1] if len(w) > 2 else w
+    base = full.rolling(4).mean().shift(1)
+    change = ((full - base) / base * 100).dropna()
+    moves = [{"week_starting": str(k.date()), "clicks": float(full[k]), "vs_previous_4_weeks_pct": round(float(v), 1)}
+             for k, v in change.reindex(change.abs().sort_values(ascending=False).index).head(5).items() if abs(v) >= 15]
+    start, end = str(df["date"].min().date()), str(df["date"].max().date())
+    anomalies = [{"from": a, "to": b, "note": n} for a, b, n in ANOMALIES if a <= end and b >= start]
+    return {"from": start, "to": end, "months": months, "biggest_weekly_moves": moves, "anomalies_in_range": anomalies}
+
+
 def pct(part, whole):
     return f"{part / whole * 100:.0f}%" if whole else "n/a"
 
@@ -185,6 +218,26 @@ def main():
             print(f"| {lab} | {shown:,.0f} | {total:,.0f} | {total - shown:,.0f} ({pct(total - shown, total)}) |")
             chart.setdefault("site_clicks", {})[lab] = {"shown_in_queries": float(shown), "site_total": float(total)}
         print()
+
+    if "dates" in t:
+        tr = trend(t["dates"])
+        if tr:
+            chart["trend"] = tr
+            print(f"## Trend, {tr['from']} to {tr['to']} (checks for changes and external events)\n")
+            print("| Month | Clicks | Impressions | |")
+            print("|---|---|---|---|")
+            for mo in tr["months"]:
+                print(f"| {mo['month']} | {mo['clicks']:,.0f} | {mo['impressions']:,.0f} | {'partial month' if mo['partial'] else ''} |")
+            print()
+            if tr["biggest_weekly_moves"]:
+                print("Biggest weekly moves in clicks (against the previous 4 weeks). Check each against changes they made and Google's confirmed updates:\n")
+                for mv in tr["biggest_weekly_moves"]:
+                    print(f"- week of {mv['week_starting']}: {mv['clicks']:,.0f} clicks, {mv['vs_previous_4_weeks_pct']:+.0f}%")
+            else:
+                print("No week moved 15% or more against the previous 4 weeks.")
+            for a in tr["anomalies_in_range"]:
+                print(f"\nWarning: from {a['from']} to {a['to']}, {a['note']}")
+            print()
 
     if args.brand:
         terms = [b.lower() for b in args.brand]

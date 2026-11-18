@@ -24,7 +24,7 @@ Apply a rule only when its trigger is in front of you. When you use one, name it
 
 **Why.** Impressions measure being eligible; clicks measure being preferred. Content anyone could produce with a good prompt gets absorbed into the answer. Content with something nobody else has keeps a reason to click, and gets cited as the source.
 
-**Doesn't apply when** brand clicks are hiding the picture: split brand and non-brand first. New pages entering at low positions pull CTR down by arithmetic, so compare CTR on pages whose position stayed stable before calling it.
+**Doesn't apply when** brand clicks are hiding the picture: split brand and non-brand first. New pages entering at low positions pull CTR down by arithmetic, so compare CTR on pages whose position stayed stable before calling it. And never when the two periods sit on either side of a Search Console data error: impressions were over-reported from 13 May 2025 to 27 April 2026, so a period before 27 April 2026 against one after it shows a fake drop in impressions and a fake rise in CTR.
 
 ### 3. Find the asymmetry
 

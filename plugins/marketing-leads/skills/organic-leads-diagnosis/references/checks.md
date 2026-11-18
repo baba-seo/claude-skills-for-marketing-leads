@@ -40,7 +40,7 @@ The ten best landing pages come from the script's top pages list. For check 4, h
 
 Where leads wait, and where the report loses them.
 
-7. **Critical.** Send a test lead during working hours and time the first reply.
+7. **Critical.** Send a test lead during working hours and time the first reply. (Outside organic search: if this is slow, it goes to sales in the diagnosis, not on the fix list.)
    Done when: they know the reply time, and who replied.
 8. **Critical.** Ask the last 10 new leads how they first heard of the company, and compare their answers with the source in the CRM.
    Done when: they know how much the CRM source misses.

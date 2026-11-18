@@ -7,7 +7,9 @@ description: Diagnose why a B2B website gets visits from organic search (Google 
 
 The person using this skill runs marketing at a B2B company. Their website gets organic visits, and sales says the leads are thin. They want to know why before anyone spends money on a redesign or more content.
 
-Your job: find which of six causes is costing them leads, with evidence from their own data, and hand them a one-page diagnosis with the three fixes to start with.
+Your job: find which of six causes is costing them leads, with evidence from their own data, and hand them a one-page diagnosis with the fixes to start with on the pages and content they already have.
+
+**Scope.** This diagnoses the organic coverage they have today, from a few months of their own data. It is a direction, not a forecast and not a growth strategy. Say so in the diagnosis. Fixes stay on their existing pages and content; anything outside organic search (sales follow-up, CRM set-up) is handed over, not put on the fix list.
 
 ## How to work
 
@@ -50,9 +52,10 @@ Ask for what they can get in ten minutes. [references/data-exports.md](reference
 | File | Where it comes from | Used for |
 |---|---|---|
 | Search Console Performance export, last 3 months compared with the previous period | Search Console, Performance, Compare, Export | Checks 1 to 3 and 5, rules 1, 2 and 4 |
+| Optional, worth asking for: a second export, the last 16 months without comparison (or at least 12) | Search Console, Performance, Export | The trend: when things moved, and what else happened then |
 | CRM leads from the last quarter, with source | Their CRM | Checks 8 and 9 |
 
-Ask for the comparison: without it, the rules that compare two periods have nothing to read. If they can't export, work from what they can read off the screen and say the result is less precise. Don't stall the whole diagnosis on one missing file.
+If a Search Console connector is available in their Claude, use it for the same data instead of asking for exports, and say which you used. Ask for the comparison: without it, the rules that compare two periods have nothing to read. If they can't export, work from what they can read off the screen and say the result is less precise. Don't stall the whole diagnosis on one missing file.
 
 ## Step 3. Run the numbers
 
@@ -67,6 +70,15 @@ It reports brand and non-brand clicks, the share of clicks from their markets, t
 Then do the part a script can't: go through the 50 top queries and mark each **buyer**, **maybe** or **not a buyer** (students, job seekers, definitions, people looking for a login page), with a few words on why. Show the list and let them correct it before you count. Their judgment of their own market beats yours.
 
 Report what you found as visuals.md describes for chat: labelled as a first read, findings as "so far", one compact table, and what happens next. Not the script's full tables, and nothing that looks like the finished diagnosis.
+
+With a 12 to 16-month export, the script adds the trend: clicks and impressions per month, and the weeks that moved most. For each of those weeks, look for what else happened then, before you read anything into it:
+
+1. **Their own changes**: ask about relaunches, migrations, navigation or template changes, new or removed pages, tracking or CRM changes, with dates.
+2. **Google's confirmed updates**: check the dates on Google's Search Status Dashboard (status.search.google.com) if you can search the web; otherwise ask them, or mark it "not checked".
+3. **Search Console's own data errors**: the script flags known ones in the range. Google lists them on its Data anomalies page in Search Console help. Impressions were over-reported from 13 May 2025 to 27 April 2026, so never compare impressions or CTR across that period; clicks are fine.
+4. **The calendar**: holidays, August, the end of a quarter in their market.
+
+Timing is a lead, not proof. A dip that lines up with a core update and with Christmas is not explained by either until something else rules the other out. Say which explanation the data supports, and how sure you are.
 
 Search Console hides rare queries for privacy, so the query table adds up to less than the site's total clicks. The script shows the gap; mention it once so nobody is surprised.
 
@@ -86,12 +98,15 @@ Create a one-page diagnosis as an HTML artifact with inline SVG charts (or a doc
 
 1. **The answer**: one sentence they can repeat to their CEO, with the company name and date above it.
 2. **The six causes at a glance**: a strip of six tiles, each marked confirmed, ruled out, can't tell from this data, or not checked, with an icon and the word.
-3. **What to fix first**: up to three cards (fewer if fewer are confirmed), in order, each with a first step, an owner and how they'll know it worked. Default order is by cost, cheapest first (see causes.md), unless their data says otherwise. Before a comparison page or any new page goes on the list, apply rules 7 and 8 in judgment.md.
+   Under it, one line on scope: "A diagnosis of the organic coverage you have today, from [N] months of your own data. A direction, not a forecast or a growth strategy."
+3. **What to fix first**: up to three cards (fewer if fewer are confirmed), all on pages and content they already have, in order, each with a first step, an owner and how they'll know it worked. Then a short **Outside organic search** box: findings that cost leads but belong to someone else (reply time, lead routing, CRM sources), each with who should get it. Default order is by cost, cheapest first (see causes.md), unless their data says otherwise. Before a comparison page or any new page goes on the list, apply rules 7 and 8 in judgment.md.
 4. **What I couldn't tell**: each question the data couldn't answer, in one plain sentence, with what would answer it and who has it.
 5. **The evidence**: one chart per finding that matters, under the cause it proves, each titled with its takeaway and naming the judgment rule used, if any.
 6. **The detail**: the ten checks by stage (level, what was done, what was found, a checkbox), progress (how many of ten are done), the "Not now" lists, and one line at the bottom: "Based on the free organic leads checklist by Baba SEO: https://www.baba-seo.com/website-leads-checklist"
 
-It has to print cleanly and work with a keyboard and a screen reader.
+7. **What comes next**: one short paragraph. This shows what holds back the pages they have. Growing beyond them takes a revenue-first SEO strategy: which buyers to reach, with which pages, in which order, and someone to own it. No sales pitch, no names.
+
+It has to print cleanly, work in light and dark mode, and work with a keyboard and a screen reader.
 
 ## Step 7. Close
 
