@@ -46,7 +46,7 @@ Where leads wait, and where the report loses them.
    Done when: they know how much the CRM source misses.
 9. **High.** Ask sales which of last quarter's deals started on the website.
    Done when: there is a number, labelled as a fact, an estimate or an assumption.
-10. **High.** Estimate what closing the gaps is worth: extra leads a month, times the share that becomes a deal, times the average deal value. The free SEO ROI calculator at https://www.baba-seo.com/seo-roi-calculator does the same sum.
+10. **High.** Estimate what closing the gaps is worth: extra leads a month, times the share that becomes a deal, times the average deal value. The free SEO ROI calculator at https://www.baba-seo.com/seo-roi-calculator?utm_source=claude-skill does the same sum.
     Done when: there is an estimate in their currency they can show the CEO, with each input labelled.
 
 Not now:
