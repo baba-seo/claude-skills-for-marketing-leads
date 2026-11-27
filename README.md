@@ -9,6 +9,7 @@ These are built for you to run on your own. They aren't the skills I use for cli
 | Skill | What it does | You need |
 |---|---|---|
 | [organic-leads-diagnosis](plugins/marketing-leads/skills/organic-leads-diagnosis/SKILL.md) | Finds why your B2B website gets organic visits (Google and AI assistants) but too few leads, and gives you a one-page diagnosis with the fixes to start with, and what your data can't tell | A Search Console export (last 3 months against the previous period), your CRM, a phone and an hour with sales |
+| [keep-rewrite-drop](plugins/marketing-leads/skills/keep-rewrite-drop/SKILL.md) | Sorts every page of a website you just took over into keep, rewrite, merge or drop: leads first, then an AI-answer test for the pages that rank but bring no leads. Ends with a sort sheet, one decision and first step per page | A Search Console Pages export (last 12 months) and your CRM leads with the page each lead first landed on |
 
 ## More than a checklist
 
@@ -38,7 +39,7 @@ On Team and Enterprise plans, an owner decides whether members can add their own
 Plugins are for paid plans, but a single skill works on Free too:
 
 1. In **Settings**, then **Capabilities**, turn on **Code execution and file creation** (called **Create and edit files** in the newer layout).
-2. Download [organic-leads-diagnosis.zip](https://github.com/baba-seo/claude-skills-for-marketing-leads/raw/main/organic-leads-diagnosis.zip). Don't unzip it.
+2. Download the skill you want: [organic-leads-diagnosis.zip](https://github.com/baba-seo/claude-skills-for-marketing-leads/raw/main/organic-leads-diagnosis.zip) or [keep-rewrite-drop.zip](https://github.com/baba-seo/claude-skills-for-marketing-leads/raw/main/keep-rewrite-drop.zip). Don't unzip it.
 3. Go to **Customize**, then **Skills**, click **+**, then **+ Create skill**, then **Upload a skill**, and choose the zip.
 
 An uploaded zip doesn't update itself. Watch this repo on GitHub, or check back, and upload the new zip when the skill changes.
@@ -62,15 +63,19 @@ Start a new chat and say what's going on, for example:
 
 > Our website gets organic traffic but sales says the leads are thin. Use the organic leads diagnosis.
 
+or
+
+> I just took over a client's website. Which pages do I keep, rewrite or drop? Use keep-rewrite-drop.
+
 Claude asks a few short questions about your company, then asks for your Search Console export and tells you exactly where to click. It does the sums on the export, marks your top searches as buyer or not (you correct it), walks you through the checks that need a phone and a test lead, and builds the diagnosis.
 
 It never makes up a figure about your company. When your data can't answer something, it says so in one plain sentence, with what would answer it, and the diagnosis keeps a "What I couldn't tell" section near the top. When it isn't sure what something in your data means, it asks you. Every number is labelled as a fact, an estimate or an assumption.
 
 ## Before you install
 
-A skill can run code, so read what you upload ([SECURITY.md](SECURITY.md) has the five-minute version). This one has a single script, [`gsc_summary.py`](plugins/marketing-leads/skills/organic-leads-diagnosis/scripts/gsc_summary.py), which reads your Search Console export and prints a summary. It runs in Claude's own sandbox and sends nothing anywhere.
+A skill can run code, so read what you upload ([SECURITY.md](SECURITY.md) has the five-minute version). This plugin has two scripts, [`gsc_summary.py`](plugins/marketing-leads/skills/organic-leads-diagnosis/scripts/gsc_summary.py) and [`content_sort.py`](plugins/marketing-leads/skills/keep-rewrite-drop/scripts/content_sort.py). Each reads the files you upload and prints a summary. It runs in Claude's own sandbox and sends nothing anywhere.
 
-Remove names, emails and phone numbers from any CRM export before you upload it. The diagnosis doesn't need them.
+Remove names, emails and phone numbers from any CRM export before you upload it. Neither skill needs them.
 
 ## Without the skill
 

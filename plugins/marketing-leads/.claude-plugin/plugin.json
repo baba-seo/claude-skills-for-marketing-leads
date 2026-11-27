@@ -1,6 +1,6 @@
 {
   "name": "marketing-leads",
-  "description": "Claude skills for marketing leads by Baba SEO. First skill: organic leads diagnosis, which finds why a B2B website gets organic visits but too few leads, using your own Search Console and CRM data.",
+  "description": "Claude skills for marketing leads by Baba SEO. Organic leads diagnosis finds why a B2B website gets organic visits but too few leads; keep-rewrite-drop sorts the pages of a website you took over into keep, rewrite, merge or drop. Both use your own Search Console and CRM data.",
   "author": {
     "name": "Baba SEO",
     "url": "https://www.baba-seo.com"

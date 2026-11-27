@@ -9,7 +9,7 @@
     {
       "name": "marketing-leads",
       "source": "./plugins/marketing-leads",
-      "description": "Find why your B2B website gets organic visits but too few leads, with your own Search Console and CRM data."
+      "description": "Find why your B2B website gets organic visits but too few leads, and decide which pages to keep, rewrite or drop, with your own Search Console and CRM data."
     }
   ]
 }

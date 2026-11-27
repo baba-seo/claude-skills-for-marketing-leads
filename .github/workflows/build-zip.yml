@@ -1,5 +1,5 @@
 # Rebuilds the two zips whenever the plugin changes, after the safety check:
-# - organic-leads-diagnosis.zip: the skill alone, for Claude's Free plan
+# - organic-leads-diagnosis.zip and keep-rewrite-drop.zip: each skill alone, for Claude's Free plan
 # - marketing-leads-plugin.zip: the whole plugin, for a company that reviews
 #   it once and uploads that copy (it then changes only when they upload again)
 name: Build zips
@@ -20,13 +20,14 @@ jobs:
       - name: Build both zips
         run: |
           find plugins -name __pycache__ -prune -exec rm -rf {} +
-          rm -f organic-leads-diagnosis.zip marketing-leads-plugin.zip
+          rm -f organic-leads-diagnosis.zip keep-rewrite-drop.zip marketing-leads-plugin.zip
           (cd plugins/marketing-leads/skills && zip -rq -X ../../../organic-leads-diagnosis.zip organic-leads-diagnosis)
+          (cd plugins/marketing-leads/skills && zip -rq -X ../../../keep-rewrite-drop.zip keep-rewrite-drop)
           (cd plugins && zip -rq -X ../marketing-leads-plugin.zip marketing-leads)
       - name: Commit if they changed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
-          git add organic-leads-diagnosis.zip marketing-leads-plugin.zip
+          git add organic-leads-diagnosis.zip keep-rewrite-drop.zip marketing-leads-plugin.zip
           git diff --cached --quiet || git commit -m "Rebuild zips"
           git push
